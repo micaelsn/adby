@@ -1,10 +1,12 @@
 import 'package:defasio1_adby/src/core/app/app_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 
 import 'src/presentation/pages/signup_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   runApp(MyApp());
 }
 

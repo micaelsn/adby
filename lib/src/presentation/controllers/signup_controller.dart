@@ -32,7 +32,7 @@ class SignupController {
     }
   }
 
-  send() async {
+  Future<bool> send() async {
     isSending.value = true;
     sendValidate(
       name: nameController.text,
@@ -45,8 +45,11 @@ class SignupController {
         'email': emailController.text,
         'phone': phoneController.text,
       });
+      isSending.value = false;
+      return true;
     }
     isSending.value = false;
+    return false;
   }
 
   bool get fieldsIsValid =>

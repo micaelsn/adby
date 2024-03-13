@@ -89,10 +89,31 @@ class _SignupPageState extends State<SignupPage> {
               return ButtonWidget(
                 title: "Send",
                 isLoading: value,
-                onPressed: controller.send,
+                onPressed: () async {
+                  final result = await controller.send();
+                  if (result) {
+                    dialog(controller.nameController.text);
+                  }
+                },
               );
             }),
       ),
     );
+  }
+
+  dialog(String name) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Bem vindo, $name"),
+            actions: [
+              ButtonWidget(
+                  isLoading: false,
+                  title: 'Entendi',
+                  onPressed: () => Navigator.of(context).pop())
+            ],
+          );
+        });
   }
 }
